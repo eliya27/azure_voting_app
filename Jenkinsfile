@@ -13,13 +13,6 @@ node {
         app = docker.build("eliyagervas/azure-app-jenkins")
     }
 
-    stage('Test image') {
-        
-        app.inside {
-            echo "Tests passed"
-        }
-    }
-
     stage('Push image') {
         /* You would need to first register with DockerHub before you can push images to your account */
         docker.withRegistry('https://registry.hub.docker.com', 'Dockerhub-ID') {

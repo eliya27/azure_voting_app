@@ -2,22 +2,16 @@ pipeline {
     agent any
 
     stages {
-        stage('Verify Branch') {
+        stage('Checkout') {
             steps {
-                echo "$GIT_BRANCH"
+                echo 'Check Image in Azure repo'
             }
         }
-        stage('Docker Build') {
+       stage('Build Image in Azure repo') {
             steps {
-                sh(script: "docker images -a")
-                sh(script:"""
-                   cd azure-vote/
-                   docker images -a
-                   docker build -t jenkins-pipeline .
-                   docker images -a
-                   cd ..
-                """)
-            }    
-        }
+                echo 'Build Image'
+            }
+        }    
+       
     }
 }

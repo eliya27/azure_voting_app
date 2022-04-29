@@ -14,13 +14,25 @@ node {
 	    echo "Finish Build Docker Image"
     }
 
-    stage('Run Trivy') {
-            echo "Trying to Validate Docker Image"
-        sh(script:"""
-	   trivy eliyagervas/azure-app-jenkins:latest
-	""")
-	    echo "Finish to Validate Docker Image"
+    stage('Run Test App') {
+            echo "Trying to Test Docker Container"
+	    steps{
+	        sh(script: """
+		     docker-compose up
+		"""
+	    }
+	    echo "Finish Container Test"
     }
+    stage('Stop Test App') {
+            echo "Finish testing"
+	    steps{
+	        sh(script: """
+		     docker-compose down
+		"""
+	    }
+	    echo "Finish Testing"
+    }		   
+		   
  
     stage('Push image') {
 	      echo "Trying Push Docker Build to DockerHub"

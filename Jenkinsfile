@@ -7,35 +7,37 @@ node {
         checkout scm
     }
 
-    stage('Build image') {
-        
-        steps{
+    stages {
+        stage('The Image'){
+            steps{
               /* This builds the actual image */
               app = docker.build("eliyagervas/azure-app-jenkins")
+           }
+        }    
+         stage('Check out'){
+            steps{
+               echo "Image succesfully built"
+            }   
         }
-        steps{
-              echo "Image succesfully built"
-        }
-    }
-    
-    stage('Run trivy') {
-        steps{
+        stage('Run trivy') {
+           steps{
 
-        sh(script: """
-              trivy eliyagervas/azure-app-jenkins
-              """
-             )
+              sh(script: """
+                  trivy eliyagervas/azure-app-jenkins
+                  """
+                )
         }
-        steps{
+          steps{
               echo "Trivy succesfully run"
+              }
+        }
+        
+        stage('Push image') {
+             /* You would need to first register with DockerHub before you can push images to your account */
+             docker.withRegistry('https://registry.hub.docker.com', 'Dockerhub-ID') {
+                  app.push("${env.BUILD_NUMBER}")
+                 app.push("latest")
+            } 
+                 echo "Trying to Push Docker Build to DockerHub"
         }
     }
-    stage('Push image') {
-        /* You would need to first register with DockerHub before you can push images to your account */
-        docker.withRegistry('https://registry.hub.docker.com', 'Dockerhub-ID') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-            } 
-                echo "Trying to Push Docker Build to DockerHub"
-    }
-}

@@ -1,9 +1,6 @@
 node {
     def app
 	
-    environment{
-       PATH = "$PATH:/var/lib/jenkins/workspace/azure_app pipeline/docker-compose.yaml"
-    }
 
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
@@ -20,6 +17,10 @@ node {
 
     stage('Run Test App') {
             echo "Trying to Test Docker Container"
+	    
+	    environment{
+                PATH = "$PATH:/var/lib/jenkins/workspace/azure_app pipeline/docker-compose.yaml"
+           }
 	    
 	        sh(script: """
 		     docker-compose up

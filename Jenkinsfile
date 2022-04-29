@@ -8,9 +8,10 @@ node {
     }
 
     stage('Build image') {
+	    echo "Trying to Build Docker Image"
         /* This builds the actual image */
-
         app = docker.build("eliyagervas/azure-app-jenkins")
+	    echo "Finish Build Docker Image"
     }
 
     /*stage('Test image') {

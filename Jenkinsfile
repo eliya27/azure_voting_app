@@ -20,6 +20,9 @@ node {
               """
              )
         }
+        steps{
+              echo "Trivy succesfully run"
+        }
     }
     stage('Push image') {
         /* You would need to first register with DockerHub before you can push images to your account */

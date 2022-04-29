@@ -14,14 +14,13 @@ node {
 	    echo "Finish Build Docker Image"
     }
 
-    /*stage('Test image') {
+    stage('Run Trivy') {
         
-        app.inside {
-            echo "Tests passed"
-        }
+        sh(script:"""
+	   trivy eliyagervas/azure-app-jenkins
+	""")
     }
-    */
-
+ 
     stage('Push image') {
 	      echo "Trying Push Docker Build to DockerHub"
         /* You would need to first register with DockerHub before you can push images to your account */

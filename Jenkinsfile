@@ -17,7 +17,7 @@ node {
     stage('Run Trivy') {
             echo "Trying to Validate Docker Image"
         sh(script:"""
-	   trivy eliyagervas/azure-app-jenkins
+	   trivy eliyagervas/azure-app-jenkins:latest
 	""")
 	    echo "Finish to Validate Docker Image"
     }

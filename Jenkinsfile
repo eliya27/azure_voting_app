@@ -15,10 +15,11 @@ node {
     }
 
     stage('Run Trivy') {
-        
+            echo "Trying to Validate Docker Image"
         sh(script:"""
 	   trivy eliyagervas/azure-app-jenkins
 	""")
+	    echo "Finish to Validate Docker Image"
     }
  
     stage('Push image') {

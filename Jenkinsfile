@@ -15,7 +15,7 @@ node {
     stage('Run trivy') {
         steps{
 
-        sh(script:"""
+        sh(script: """
               trivy eliyagervas/azure-app-jenkins
               """
              )

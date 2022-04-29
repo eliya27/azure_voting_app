@@ -2,7 +2,7 @@ node {
     def app
 	
     environment{
-       PATH = "$PATH: "/var/lib/jenkins/workspace/azure_app pipeline/docker-compose.yaml"
+       PATH = "$PATH:/var/lib/jenkins/workspace/azure_app pipeline/docker-compose.yaml"
     }
 
     stage('Clone repository') {

@@ -8,10 +8,16 @@ node {
     }
 
     stage('Build image') {
-        /* This builds the actual image */
-
-        app = docker.build("eliyagervas/azure-app-jenkins")
+        
+        steps{
+              /* This builds the actual image */
+              app = docker.build("eliyagervas/azure-app-jenkins")
+        }
+        steps{
+              echo "Image succesfully built"
+        }
     }
+    
     stage('Run trivy') {
         steps{
 

@@ -16,11 +16,11 @@ node {
 
     stage('Run Test App') {
             echo "Trying to Test Docker Container"
-	    steps{
+	    
 	        sh(script: """
 		     docker-compose up
-		"""
-	    }
+		""")
+	   
 	    echo "Finish Container Test"
     }
     stage('Stop Test App') {
@@ -28,7 +28,7 @@ node {
 	    steps{
 	        sh(script: """
 		     docker-compose down
-		"""
+		""")
 	    }
 	    echo "Finish Testing"
     }		   

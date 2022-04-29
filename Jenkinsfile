@@ -22,13 +22,12 @@ node {
     */
 
     stage('Push image') {
-        /* 
-			You would need to first register with DockerHub before you can push images to your account
-		*/
+	      echo "Trying Push Docker Build to DockerHub"
+        /* You would need to first register with DockerHub before you can push images to your account */
         docker.withRegistry('https://registry.hub.docker.com', 'Dockerhub-ID') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
             } 
-                echo "Trying to Push Docker Build to DockerHub"
+                echo "Finish Push Docker Build to DockerHub"
     }
 }

@@ -25,11 +25,11 @@ node {
     }
     stage('Stop Test App') {
             echo "Finish testing"
-	    steps{
+	    
 	        sh(script: """
 		     docker-compose down
 		""")
-	    }
+	    
 	    echo "Finish Testing"
     }		   
 		   

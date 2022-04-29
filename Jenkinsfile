@@ -12,7 +12,15 @@ node {
 
         app = docker.build("eliyagervas/azure-app-jenkins")
     }
+    stage('Run trivy') {
+        steps{
 
+        sh(script:"""
+              trivy eliyagervas/azure-app-jenkins
+              """
+             )
+        }
+    }
     stage('Push image') {
         /* You would need to first register with DockerHub before you can push images to your account */
         docker.withRegistry('https://registry.hub.docker.com', 'Dockerhub-ID') {

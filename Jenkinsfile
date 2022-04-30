@@ -28,7 +28,7 @@ node {
                 echo "Finish Push Docker Build to DockerHub"
     }
     
-     stage('Push image') {
+     stage('Deployment') {
 	      echo "Trying to Deploy"
        
                 echo "Finish Deployment"

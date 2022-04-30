@@ -14,31 +14,7 @@ node {
         app = docker.build("eliyagervas/azure-app-jenkins")
 	    echo "Finish Build Docker Image"
     }
-
-    stage('Run Test App') {
-            echo "Trying to Test Docker Container"
-	    
-	    environment{
-                PATH = "$PATH:/var/lib/jenkins/workspace/azure_app pipeline/docker-compose.yaml"
-           }
-	    
-	        sh(script: """
-		     docker-compose up
-		""")
-	   
-	    echo "Finish Container Test"
-    }
-    stage('Stop Test App') {
-            echo "Finish testing"
-	    
-	        sh(script: """
-		     docker-compose down
-		""")
-	    
-	    echo "Finish Testing"
-    }		   
 		   
- 
     stage('Push image') {
 	      echo "Trying Push Docker Build to DockerHub"
         /* You would need to first register with DockerHub before you can push images to your account */
@@ -48,4 +24,11 @@ node {
             } 
                 echo "Finish Push Docker Build to DockerHub"
     }
+    
+     stage('Push image') {
+	      echo "Trying to Deploy"
+       
+                echo "Finish Deployment"
+    }	
+	
 }

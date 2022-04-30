@@ -30,7 +30,13 @@ node {
     
      stage('Deployment') {
 	      echo "Trying to Deploy"
-       
+          acsDeploy (azureCredentialsId: 'jenkins_demo', 
+		     configFilePaths: '**/*.yaml', 
+		     containerService: 'jenkinsaks | AKS', 
+		     dcosDockerCredentialsPath: '', resourceGroupName: 'jenkins-app', 
+		     secretName: '', 
+		     sshCredentialsId: ''
+		    ) 
                 echo "Finish Deployment"
     }	
 	

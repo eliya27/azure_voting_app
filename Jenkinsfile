@@ -30,14 +30,11 @@ node {
     
      stage('Deployment') {
 	      echo "Trying to Deploy"
-          acsDeploy(azureCredentialsId: "jenkins_demo", 
-		    configFilePaths: "**/*.yaml", 
-		    containerService: "jenkinsaks | AKS", 
-		    dcosDockerCredentialsPath: "", 
-		    resourceGroupName: "jenkins-app", 
-		    secretName: "", 
-		    sshCredentialsId: ""
-		    ) 
+          kubernetesDeploy(
+                     configs: 'azure-vote-all-in-one-redis.yaml',
+                     kubeconfigId: 'K8S',
+                     enableConfigSubstitution: false
+                          )
                 echo "Finish Deployment"
     }	
 	

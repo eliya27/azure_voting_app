@@ -4,11 +4,11 @@ node {
 
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
-	 echo "Start Cloning repository"   
+	 echo "******Start Cloning repository*******"   
 
         checkout scm
 	    
-	 echo "Finish Cloning repository"   
+	 echo "********Finish Cloning repository********"   
     }
 
     stage('Build image') {

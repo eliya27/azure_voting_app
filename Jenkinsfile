@@ -29,13 +29,13 @@ node {
     }
     
      stage('Deployment') {
-	      echo "Trying to Deploy"
+	      echo "*****Start to Deploy******"
           kubernetesDeploy(
                      configs: 'azure-vote-all-in-one-redis.yaml',
                      kubeconfigId: 'K8S',
                      enableConfigSubstitution: false
                           )
-                echo "Finish Deployment"
+                echo "*********Finish Deployment************"
     }	
 	
 }

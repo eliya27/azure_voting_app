@@ -8,7 +8,7 @@ node {
 
         checkout scm
 	    
-	 echo "********Finish Cloning repository********"   
+	 echo "********Finish Cloning repository******"   
     }
 
     stage('Build image') {
